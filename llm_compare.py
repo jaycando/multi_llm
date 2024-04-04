@@ -10,13 +10,14 @@ model_names = [name for name in os.listdir(model_dir) if os.path.isdir(os.path.j
 selected_models = st.multiselect("모델을 선택해주세요.", model_names)
 
 # 프롬프트를 입력받습니다.
+token_key = st.text_input("Huggingface의 토큰 Key를 입력해주세요.")
 prompt = st.text_input("프롬프트를 입력해주세요.")
 
 if st.button("실행"):
     results = {}
     for model_name in selected_models:
         # 각 모델에 대한 토큰 Key를 입력받습니다.
-        token_key = st.text_input("Huggingface의 토큰 Key를 입력해주세요.")
+        # token_key = st.text_input("Huggingface의 토큰 Key를 입력해주세요.")
         # 각 모델을 로드합니다.
         tokenizer = AutoTokenizer.from_pretrained(os.path.join(model_dir, model_name), use_auth_token=token_key)
         model = AutoModelForCausalLM.from_pretrained(os.path.join(model_dir, model_name), use_auth_token=token_key)
