@@ -16,7 +16,7 @@ if st.button("실행"):
     results = {}
     for model_name in selected_models:
         # 각 모델에 대한 토큰 Key를 입력받습니다.
-        token_key = st.text_input(f"{model_name}의 토큰 Key를 입력해주세요.")
+        token_key = st.text_input("Huggingface의 토큰 Key를 입력해주세요.")
         # 각 모델을 로드합니다.
         tokenizer = AutoTokenizer.from_pretrained(os.path.join(model_dir, model_name), use_auth_token=token_key)
         model = AutoModelForCausalLM.from_pretrained(os.path.join(model_dir, model_name), use_auth_token=token_key)
